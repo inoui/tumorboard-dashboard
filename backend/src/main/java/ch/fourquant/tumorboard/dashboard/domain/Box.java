@@ -12,6 +12,9 @@ public class Box {
 	@NotNull
 	private String description;
 
+	public Box() {
+	}
+	
 	public Box(Box clone) {
 		title = clone.getTitle();
 		description = clone.getDescription();

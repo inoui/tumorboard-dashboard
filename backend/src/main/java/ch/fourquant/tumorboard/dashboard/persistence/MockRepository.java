@@ -5,7 +5,6 @@ import java.util.List;
 
 import ch.fourquant.tumorboard.dashboard.domain.Box;
 
-
 // TODO: Make this injectable using @Scanned or alike.
 public class MockRepository {
 
@@ -41,7 +40,9 @@ public class MockRepository {
 			Box newBox = new Box(savingBox);
 			newBox.setId(id);
 			objects.add(newBox);
-			return new Box(newBox);
+			Box result = new Box(newBox);
+			result.setId(id);
+			return result;
 		}
 	}
 

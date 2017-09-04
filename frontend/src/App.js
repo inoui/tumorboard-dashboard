@@ -21,13 +21,16 @@ class App extends React.Component {
       })
     });
 
+    var url = "";
     fetch(request)
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .then(properties => {
-      this.setState({ "resturl" : properties.url });
+      console.log(properties.url);
+      url = properties.url;
+      console.log("setting state: " + url);
+      this.setState({ resturl : url });
     })
     .catch(error => { // handle error
         console.log("an error occurred! " + error);
@@ -35,6 +38,7 @@ class App extends React.Component {
   }
 
   getComponent() {
+    console.log("getting component: " + this.state.resturl);
     if (this.state.resturl == "") {
       return <Loader />;
     } else {

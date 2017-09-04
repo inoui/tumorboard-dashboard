@@ -1,22 +1,19 @@
 import React from 'react';
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
+import { Panel } from 'react-bootstrap'
 
 class BoxContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      boxes : []
     }
     this.createRestful = this.createRestful.bind(this);
-    this.computeNextId = this.computeNextId.bind(this);
     this.updateRestful = this.updateRestful.bind(this);
     this.deleteRestful = this.deleteRestful.bind(this);
     this.reload = this.reload.bind(this);
-  }
-
-  computeNextId() {
-    return this.state.qs[this.state.qs.length - 1].id + 1
   }
 
   createRestful(title, description) {
@@ -32,10 +29,10 @@ class BoxContainer extends React.Component {
     .then(response => 
         response.json()
     )
-    .then(questionnaire => {
-      var newQs = this.state.qs;
-      newQs[newQs.length] = { "id" : questionnaire.id, "title" : questionnaire.title, "description" : questionnaire.description};
-      this.setState({"qs" : newQs });
+    .then(box => {
+      var newboxes = this.state.boxes;
+      newboxes[newboxes.length] = { "id" : box.id, "title" : box.title, "description" : box.description};
+      this.setState({"boxes" : newboxes });
     })
     .catch(error => { // handle error
         console.log("an error occurred!" + error);
@@ -55,7 +52,7 @@ class BoxContainer extends React.Component {
     .then(response => 
         response.json()
     )
-    .then(questionnaire => {
+    .then(box => {
       this.reload();
     })
     .catch(error => { // handle error
@@ -80,7 +77,7 @@ class BoxContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.qs.length == 0) {
+    if (this.state.boxes.length == 0) {
       this.reload();
     }
   }
@@ -89,10 +86,9 @@ class BoxContainer extends React.Component {
     return (
       <div>
             {this.state.boxes.map((box) =>
-              <div style="border: 1px solid black; height: 100px; width: 100px">
-                <h1>{box.title}</h1>
-                <p>{box.description}</p>
-              </div>
+              <Panel header={box.title}  key="{box.id}">
+               {box.description}
+              </Panel>
             )}
       </div>
     );
@@ -107,9 +103,13 @@ class BoxContainer extends React.Component {
     });
 
     fetch(request)
-    .then(response =>  response.json() )
+    .then(response => {
+      console.log(response);
+      return response.json()
+    })
     .then(boxes => {  // handle boxes object
-      this.setState({"qs" : boxes});
+      console.log(boxes)
+      this.setState({"boxes" : boxes});
     })
     .catch(error => { // handle error
         console.log("an error occurred!" + error);
