@@ -85,11 +85,18 @@ class BoxContainer extends React.Component {
   render() {
     return (
       <div>
-            {this.state.boxes.map((box) =>
-              <Panel header={box.title}  key="{box.id}">
-               {box.description}
-              </Panel>
-            )}
+        <Header
+          username="Camille Ritzenhoff"
+          currentConfiguration="" />
+        {this.state.boxes.map((box) =>
+          <Panel header={box.title}  key="{box.id}">
+            {box.description}
+          </Panel>
+        )}
+        <Footer 
+          clients={["Max Muster", "Peter Spühler"]} 
+          currentClient="Max Muster"
+          />
       </div>
     );
   }

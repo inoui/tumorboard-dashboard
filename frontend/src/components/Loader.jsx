@@ -1,5 +1,4 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap'
 
 
 class Loader extends React.Component {
@@ -7,7 +6,7 @@ class Loader extends React.Component {
   render() {
     return (
       <div>
-        loading
+        loading, please wait a second
       </div>
     );
   }
