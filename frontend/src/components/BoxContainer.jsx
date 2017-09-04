@@ -77,7 +77,7 @@ class BoxContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.boxes.length == 0) {
+    if (this.state.boxes.length === 0) {
       this.reload();
     }
   }
@@ -104,11 +104,9 @@ class BoxContainer extends React.Component {
 
     fetch(request)
     .then(response => {
-      console.log(response);
       return response.json()
     })
     .then(boxes => {  // handle boxes object
-      console.log(boxes)
       this.setState({"boxes" : boxes});
     })
     .catch(error => { // handle error

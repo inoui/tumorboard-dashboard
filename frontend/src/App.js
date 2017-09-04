@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = { "resturl" : "" };
     this.getComponent = this.getComponent.bind(this);
   }
@@ -27,9 +27,7 @@ class App extends React.Component {
       return response.json();
     })
     .then(properties => {
-      console.log(properties.url);
       url = properties.url;
-      console.log("setting state: " + url);
       this.setState({ resturl : url });
     })
     .catch(error => { // handle error
@@ -38,8 +36,7 @@ class App extends React.Component {
   }
 
   getComponent() {
-    console.log("getting component: " + this.state.resturl);
-    if (this.state.resturl == "") {
+    if (this.state.resturl === "") {
       return <Loader />;
     } else {
       return <BoxContainer resturl={this.state.resturl} />
