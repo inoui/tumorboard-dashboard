@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroup, Button, Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap'
+import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap'
 
 
 class Header extends React.Component {

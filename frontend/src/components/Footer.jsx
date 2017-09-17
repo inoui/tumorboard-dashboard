@@ -1,12 +1,8 @@
 import React from 'react';
-import { Button, Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap'
+import { Glyphicon, Nav, NavItem } from 'react-bootstrap'
 
 
 class Footer extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (

@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
-import { Panel } from 'react-bootstrap'
+import { Well } from 'react-bootstrap'
+
+import './BoxContainer.css';
 
 class BoxContainer extends React.Component {
 
@@ -88,18 +90,21 @@ class BoxContainer extends React.Component {
         <Header
           username="Camille Ritzenhoff"
           currentConfiguration="" />
-          {this.state.boxes.map((box) =>
-          <Panel header={box.title}  key={box.id}>
-            {box.description}
-          </Panel>
-        )}
+          <div className="boxes">
+            {this.state.boxes.map((box) =>
+                <Well className="box">
+                  <span>{box.title}</span><br />
+                  <span>{box.description}</span>
+                </Well>
+            )}
+          </div>
         <Footer 
           clients={["Max Muster", "Peter Spühler"]} 
           currentClient="Max Muster"
           />
       </div>
     );
-  }
+  };
 
   reload() {
     var request = new Request(this.props.resturl, {

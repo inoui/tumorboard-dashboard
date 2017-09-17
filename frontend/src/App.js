@@ -43,6 +43,7 @@ class App extends React.Component {
     }
   }
 
+  /* TODO: the jquery import does not belong here! */
   render() {
     return (
       <div className="App">
