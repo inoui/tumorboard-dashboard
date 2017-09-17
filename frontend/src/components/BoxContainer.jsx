@@ -88,8 +88,8 @@ class BoxContainer extends React.Component {
         <Header
           username="Camille Ritzenhoff"
           currentConfiguration="" />
-        {this.state.boxes.map((box) =>
-          <Panel header={box.title}  key="{box.id}">
+          {this.state.boxes.map((box) =>
+          <Panel header={box.title}  key={box.id}>
             {box.description}
           </Panel>
         )}
