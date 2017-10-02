@@ -1,0 +1,6 @@
+{
+  "NAME": "Development",
+  "API_MAIN_URL": "http://localhost:8080/dashboard",
+  "API_UAM_URL": "https://api",
+  "LOG_LEVEL": "debug"
+}

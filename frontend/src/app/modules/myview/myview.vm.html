@@ -1,0 +1,14 @@
+<template>
+  <header>
+    <button class="btn btn-default fa fa-bars pull-right" click.delegate="onClickSettings()" alt="${ 'SETTINGS_BUTTON_VALUE' | t }"></button>
+    <button class="btn btn-default fa fa-plus pull-right" click.delegate="onClickAddBox()" alt="${ ''ADD_BOX_BUTTON_VALUE' | t }"></button>
+    <button class="btn btn-default fa fa-exchange pull-right" click.delegate="onClickExchangeView()" alt="${ 'EXCHANGE_BUTTON_VALUE' | t }"></button>
+    <button class="btn btn-default fa fa-print pull-right" click.delegate="onClickPrint()" alt="${ 'PRINT_BUTTON_VALUE' | t }"></button>
+  </header>
+  <section class="au-animate">
+      <box repeat.for="box of boxes" content.bind="box"></box>
+  </section>
+  <section>
+    <footer></footer>
+  </section>
+</template>
