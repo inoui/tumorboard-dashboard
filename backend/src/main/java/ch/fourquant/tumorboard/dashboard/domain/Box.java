@@ -2,46 +2,35 @@ package ch.fourquant.tumorboard.dashboard.domain;
 
 import javax.validation.constraints.NotNull;
 
-public class Box {
+public class Box extends BusinessEntity {
 
-	private String id;
+    @NotNull
+    private String title;
 
-	@NotNull
-	private String title;
+    @NotNull
+    private String description;
 
-	@NotNull
-	private String description;
+    public Box(Box clone) {
+        super(clone);
+        title = clone.getTitle();
+        description = clone.getDescription();
+    }
 
-	public Box() {
-	}
-	
-	public Box(Box clone) {
-		title = clone.getTitle();
-		description = clone.getDescription();
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
 }
