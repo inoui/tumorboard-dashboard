@@ -1,8 +1,5 @@
 package ch.fourquant.tumorboard.dashboard.rest;
 
-import ch.fourquant.tumorboard.dashboard.domain.BoxController;
-import ch.fourquant.tumorboard.dashboard.domain.DashboardRestController;
-import ch.fourquant.tumorboard.dashboard.domain.PatientController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

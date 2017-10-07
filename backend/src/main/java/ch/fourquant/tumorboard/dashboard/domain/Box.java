@@ -10,6 +10,10 @@ public class Box extends BusinessEntity {
     @NotNull
     private String description;
 
+    public Box() {
+        super();
+    }
+
     public Box(Box clone) {
         super(clone);
         title = clone.getTitle();

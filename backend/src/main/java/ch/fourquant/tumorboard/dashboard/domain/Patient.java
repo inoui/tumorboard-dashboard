@@ -18,6 +18,10 @@ public class Patient extends BusinessEntity {
 
     private List<Box> boxes;
 
+    public Patient() {
+        super();
+    }
+
     public Patient(String name, String firstName, Date birthdate) {
         super();
         this.name = name;

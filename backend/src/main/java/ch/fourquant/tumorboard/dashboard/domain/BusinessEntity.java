@@ -7,12 +7,12 @@ public class BusinessEntity {
     private String id;
 
     public BusinessEntity(){
-        id = new UUID(31L, 17L).toString();
+        id = UUID.randomUUID().toString();
     }
 
     public BusinessEntity(BusinessEntity clone) {
         if (clone.id == null) {
-            id = new UUID(31L, 17L).toString();
+            id = UUID.randomUUID().toString();
         } else {
             id = clone.id;
         }

@@ -1,10 +1,13 @@
-package ch.fourquant.tumorboard.dashboard.domain;
+package ch.fourquant.tumorboard.dashboard.rest;
 
+import ch.fourquant.tumorboard.dashboard.domain.Box;
 import ch.fourquant.tumorboard.dashboard.persistence.BoxRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ch.fourquant.tumorboard.dashboard.persistence.MockRepository;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("/boxes")
 public class BoxController extends DashboardRestController<Box> {
 

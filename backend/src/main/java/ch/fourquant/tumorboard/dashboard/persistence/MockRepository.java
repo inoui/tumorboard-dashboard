@@ -4,6 +4,8 @@ import ch.fourquant.tumorboard.dashboard.domain.BusinessEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 
 // TODO: Make this injectable using @Scanned or alike.
@@ -21,7 +23,16 @@ public abstract class MockRepository<T extends BusinessEntity> {
 	}
 
 	public T findById(String id) {
-		return getNewInstance(objects.stream().filter(e -> e.getId() == id).findFirst().get());
+		Stream<T> stream = objects.stream().filter(e -> e.getId() == id);
+		try {
+			T foundEntity = stream.findFirst().get();
+			T newInstance = getNewInstance(foundEntity);
+			return newInstance;
+		} catch (NoSuchElementException e) {
+			// TODO: maybe log something here
+			// This is okay, the element could not be found. Therefore we simply return null
+			return null;
+		}
 	}
 
 	protected abstract T getNewInstance(T clone);

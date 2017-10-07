@@ -1,4 +1,4 @@
-package ch.fourquant.tumorboard.dashboard.domain;
+package ch.fourquant.tumorboard.dashboard.rest;
 
 import ch.fourquant.tumorboard.dashboard.domain.BusinessEntity;
 import ch.fourquant.tumorboard.dashboard.domain.Patient;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 public abstract class DashboardRestController<T extends BusinessEntity> {
 
     protected abstract MockRepository<T> getRepository();

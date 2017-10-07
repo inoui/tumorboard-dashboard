@@ -1,5 +1,7 @@
-package ch.fourquant.tumorboard.dashboard.domain;
+package ch.fourquant.tumorboard.dashboard.rest;
 
+import ch.fourquant.tumorboard.dashboard.domain.Box;
+import ch.fourquant.tumorboard.dashboard.domain.Patient;
 import ch.fourquant.tumorboard.dashboard.persistence.MockRepository;
 import ch.fourquant.tumorboard.dashboard.persistence.PatientRepository;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@RestController
 @RequestMapping("/patients")
 public class PatientController extends DashboardRestController<Patient> {
 
