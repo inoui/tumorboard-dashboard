@@ -1,21 +1,32 @@
 package ch.fourquant.tumorboard.dashboard.domain;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Patient extends BusinessEntity {
+@Entity
+@Table(name = "patient")
+public class Patient {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @NotNull
+    @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "firstname")
     private String firstName;
 
     @NotNull
+    @Column(name = "birtdate")
     private Date birthdate;
 
+    @OneToMany(targetEntity = Box.class)
     private List<Box> boxes;
 
     public Patient() {
@@ -31,7 +42,6 @@ public class Patient extends BusinessEntity {
     }
 
     public Patient(Patient clone) {
-        super(clone);
         name = clone.name;
         firstName = clone.firstName;
         birthdate = clone.birthdate;
@@ -73,4 +83,22 @@ public class Patient extends BusinessEntity {
         this.birthdate = birthdate;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient {" +
+                " id = " + id +
+                ", name = '" + name + '\'' +
+                ", firstName = '" + firstName + '\'' +
+                ", birthdate = " + birthdate +
+                ", boxes = " + boxes +
+                " }";
+    }
 }
