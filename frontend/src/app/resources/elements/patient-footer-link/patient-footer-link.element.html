@@ -1,0 +1,11 @@
+<template>
+<!--  <div if.bind="isSelected">
+    <Button href="#">${ patient.firstName } ${ patient.name }</Button>
+    <Button class="btn btn-default fa fa-print pull-right" click.delegate="onClickPrint()" alt="${ 'PRINT_BUTTON_VALUE' | t }" href="#"><i class="fa fa-user"></i>
+    <i class="fa fa-times"></i>
+  </div>-->
+    <Button if.bind="isSelected" class="btn btn-primary" href="#" click.delegate="selectPatient()">${ patient.firstName } ${ patient.name }</Button>
+    <Button if.bind="!(isSelected)" class="btn btn-default" href="#" click.delegate="selectPatient()">${ patient.firstName } ${ patient.name }</Button>
+    <!--<Button class="btn btn-default fa fa-print pull-right" click.delegate="onClickPrint()" alt="${ 'PRINT_BUTTON_VALUE' | t }" href="#"><i class="fa fa-user"></i>-->
+    <i class="fa fa-times"></i>
+</template>

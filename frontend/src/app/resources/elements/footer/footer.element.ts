@@ -1,10 +1,12 @@
-import { autoinject } from 'aurelia-framework';
+import { autoinject, bindable, computedFrom } from 'aurelia-framework';
 import { LogManager, Logger} from '../../../services/logger.service';
 import { PatientService, Patient } from '../../../services/patient.service';
 
 @autoinject
 export class FooterCustomElement {
   private logger: Logger;
+
+  @bindable
   public patients: Patient[] = [];
 
 	constructor(
@@ -13,10 +15,8 @@ export class FooterCustomElement {
 		this.logger = LogManager.getLogger('Footer');
   }
 
-  public async activate(): Promise<void> {
-    this.logger.info('activating...');
+ 	public async attached(): Promise<void> {
     this.patients = await this.patientService.getPatients();
-    this.logger.info(this.patients.length + ' ');
 	}
 
 }

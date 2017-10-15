@@ -1,5 +1,6 @@
 import { autoinject } from 'aurelia-framework';
 import { RestClient } from './rest/rest-client.service';
+import { Patient, PatientService } from './patient.service';
 
 export interface Box {
   title: string;
@@ -10,7 +11,8 @@ export interface Box {
 export class BoxService {
 
   constructor(
-    private restClient: RestClient
+    private restClient: RestClient,
+    private patientService: PatientService
   ) {}
 
   public async getBoxes(): Promise<Box[]> {
@@ -19,5 +21,9 @@ export class BoxService {
       .withJsonHeaders()
       .fetchGet<Box[]>('/boxes');
     return res;
+  }
+
+  public async getBoxesForPatient(patient: Patient): Promise<Box[]> {
+   return this.patientService.getPatient(patient.id).then(result => result.boxes);
   }
 }
