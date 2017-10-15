@@ -1,35 +1,35 @@
 import { autoinject, bindable } from 'aurelia-framework';
 import { LogManager, Logger} from './../../services/logger.service';
 import { BoxService, Box } from './../../services/boxes.service';
-import { PatientService, Patient, PatientServiceObserver } from './../../services/patient.service';
+import { ClientService, Client, ClientServiceObserver } from './../../services/client.service';
 
 import * as interact from 'interactjs';
 
 @autoinject
-export class MyViewViewModel implements PatientServiceObserver {
+export class MyViewViewModel implements ClientServiceObserver {
   private logger: Logger;
 	public heading: string = 'My new wonderful title';
 
   @bindable
   public boxes: Box[] = [];
-  public patients: Patient[] = [];
-  public selectedPatient: Patient;
+  public clients: Client[] = [];
+  public selectedClient: Client;
   public actionOptions = {
     overlap: 0.1
   };
 
 	constructor(
     private boxService: BoxService,
-    private patientService: PatientService
+    private clientService: ClientService
   ) {
 		this.logger = LogManager.getLogger('myview');
   }
 	public async activate(): Promise<void> {
-    this.patients = await this.patientService.getPatients();
+    this.clients = await this.clientService.getClients();
 	}
 
   public attached(): void {
-    this.patientService.registerObserver(this);
+    this.clientService.registerObserver(this);
   }
 
   public onClickPrint(): void {
@@ -49,12 +49,12 @@ export class MyViewViewModel implements PatientServiceObserver {
   }
 
   public async update(): Promise<void> {
-    let patient: Patient = this.patientService.getSelectedPatient();
-    if (patient === undefined) {
-      this.patientService.setSelectedPatient(this.patients[0]);
-      patient = this.patients[0];
+    let client: Client = this.clientService.getSelectedClient();
+    if (client === undefined) {
+      this.clientService.setSelectedClient(this.clients[0]);
+      client = this.clients[0];
     }
-    this.boxes = await this.boxService.getBoxesForPatient(patient);
+    this.boxes = await this.boxService.getBoxesForClient(client);
   }
 
 }

@@ -1,6 +1,6 @@
 import { autoinject } from 'aurelia-framework';
 import { RestClient } from './rest/rest-client.service';
-import { Patient, PatientService } from './patient.service';
+import { Client, ClientService } from './client.service';
 
 export interface Box {
   title: string;
@@ -12,7 +12,7 @@ export class BoxService {
 
   constructor(
     private restClient: RestClient,
-    private patientService: PatientService
+    private clientService: ClientService
   ) {}
 
   public async getBoxes(): Promise<Box[]> {
@@ -23,7 +23,7 @@ export class BoxService {
     return res;
   }
 
-  public async getBoxesForPatient(patient: Patient): Promise<Box[]> {
-   return this.patientService.getPatient(patient.id).then(result => result.boxes);
+  public async getBoxesForClient(client: Client): Promise<Box[]> {
+   return this.clientService.getClient(client.id).then(result => result.boxes);
   }
 }
