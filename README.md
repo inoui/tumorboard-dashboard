@@ -4,6 +4,7 @@
 
 ### Toolset
 You will need the following tools and software installed on your machine:
+
 | Tool / Software  | Purpose | Version  |
 | ------------- |:-------------:| -----:|
 | MySQL Server  | Persistency | 5.7 |
