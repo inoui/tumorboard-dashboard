@@ -13,7 +13,10 @@
 *.rar
 
 # Gradle
-
+backend/.gradle
+backend/build
+backend/.idea
+backend/out
 
 # Ignore Gradle GUI config
 gradle-app.setting
