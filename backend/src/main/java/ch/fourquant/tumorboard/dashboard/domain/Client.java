@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "patient")
-public class Patient {
+@Table(name = "client")
+public class Client {
 
     @Id
     @GeneratedValue
@@ -29,11 +29,11 @@ public class Patient {
     @OneToMany(targetEntity = Box.class)
     private List<Box> boxes;
 
-    public Patient() {
+    public Client() {
         super();
     }
 
-    public Patient(String name, String firstName, Date birthdate) {
+    public Client(String name, String firstName, Date birthdate) {
         super();
         this.name = name;
         this.firstName = firstName;
@@ -41,7 +41,7 @@ public class Patient {
         boxes = new ArrayList<>();
     }
 
-    public Patient(Patient clone) {
+    public Client(Client clone) {
         name = clone.name;
         firstName = clone.firstName;
         birthdate = clone.birthdate;
@@ -93,7 +93,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient {" +
+        return "Client {" +
                 " id = " + id +
                 ", name = '" + name + '\'' +
                 ", firstName = '" + firstName + '\'' +

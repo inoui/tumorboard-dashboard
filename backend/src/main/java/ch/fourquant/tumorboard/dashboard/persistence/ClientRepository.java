@@ -1,11 +1,10 @@
 package ch.fourquant.tumorboard.dashboard.persistence;
 
-import ch.fourquant.tumorboard.dashboard.domain.Patient;
+import ch.fourquant.tumorboard.dashboard.domain.Client;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PatientRepository extends CrudRepository<Patient, Long> {
+public interface ClientRepository extends CrudRepository<Client, Long> {
 
 }

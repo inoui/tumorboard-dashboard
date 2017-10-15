@@ -20,7 +20,7 @@ public class Box {
     private String description;
 
     @NotNull
-    private Long patientId;
+    private Long clientId;
 
     public Box() {
         super();
@@ -31,12 +31,12 @@ public class Box {
         description = clone.getDescription();
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public void setTitle(String title) {
@@ -69,7 +69,7 @@ public class Box {
                 " id = " + id +
                 ", title = '" + title + '\'' +
                 ", description = '" + description + '\'' +
-                ", patient = " + patientId +
+                ", client = " + clientId +
                 " }";
     }
 }
