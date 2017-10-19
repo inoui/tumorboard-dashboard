@@ -20,4 +20,6 @@ export class BoxService {
       .fetchGet<Box[]>('/boxes');
     return res;
   }
+
+  // todo update box when position or size changes
 }

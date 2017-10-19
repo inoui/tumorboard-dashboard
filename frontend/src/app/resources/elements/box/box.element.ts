@@ -1,5 +1,5 @@
 import { autoinject, bindable } from 'aurelia-framework';
-import { Box } from '../../../services/boxes.service';
+import { Box, BoxService } from '../../../services/boxes.service';
 import * as interact from 'interactjs';
 import { LogManager, Logger} from '../../../services/logger.service';
 
@@ -13,12 +13,26 @@ export class BoxCustomElement {
   private logger: Logger;
   private GRID_SIZE = 20;
 
-  constructor() {
+  constructor(
+    private boxService: BoxService
+  ) {
     this.logger = LogManager.getLogger('AppViewModel');
   }
 
   public attached(): void {
     interact(this.element).draggable({
+      /*snap: {
+        targets: [ interact.createSnapGrid({ x:500, y: 500 })
+        ],
+        range: Infinity,
+        relativePoints: [
+         //  { x: 0, y: 100000  },   // snap relative to the element's top-left,
+         //  { x: 0.5, y: 0.5 },   // to the center
+         // { x: 1  , y: 1   }    // and to the bottom-right
+        ],
+        //offset: { x: 20, y: 20 }
+        endOnly: true
+      },*/
       // enable inertial throwing
       inertia: true,
       // keep the element within the area of it's parent
@@ -67,6 +81,8 @@ export class BoxCustomElement {
       target.setAttribute('data-y', y);
     });
 
+    let element = document.getElementById('grid-snap'),
+    x = 0, y = 0;
     function dragMoveListener(event): void {
       let target = event.target,
         // keep the dragged position in the data-x/data-y attributes
@@ -88,6 +104,10 @@ export class BoxCustomElement {
       target.setAttribute('data-y', y);
       //target.style.zIndex = oldZIndex;
       //dis.logger.info('new old zindex of ' + target + ' : ' + target.style.zIndex);
+
+      // determine coords and range of box
+      // determine intersection with all other boxes -> call boxservice
+      // notifymovement to all listening boxes
     }
 
     /*function mouseDownListener(event): void {
