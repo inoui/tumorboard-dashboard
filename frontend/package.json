@@ -7,26 +7,26 @@
   "identifier": "ch.w3tec.app",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/w3tecch/aurelia-typescript-boilerplate.git"
+    "url": "git+ssh://git@github.com/keniseli/tumorboard-dashboard.git"
   },
-  "author": "w3tec <info@w3tec.ch> (http://w3tec.ch/)",
+  "author": "intentionally left blank",
   "contributors": [
     {
-      "name": "Gery Hirschfeld <gery.hirschfeld@w3tec.ch> (https://github.com/hirsch88)"
+      "name": "David Heimgartner <david.heimgartner@students.fhnw.ch> (https://github.com/davidheimgartner)"
     },
     {
-      "name": "David Weber <david.weber@w3tec.ch> (https://github.com/dweber019)"
+      "name": "Ken Iseli <ken.iseli@students.fhnw.ch> (https://github.com/keniseli)"
     }
   ],
   "bugs": {
-    "url": "https://github.com/w3tecch/aurelia-typescript-boilerplate/issues"
+    "url": "https://github.com/keniseli/tumorboard-dashboard/issues"
   },
-  "homepage": "https://github.com/w3tecch/aurelia-typescript-boilerplate#readme",
+  "homepage": "https://github.com/keniseli/tumorboard-dashboard#readme",
   "license": "MIT",
   "keywords": [
     "aurelia",
-    "skeleton",
-    "boilterplate",
+    "tumorboard",
+    "dashboard",
     "typescript",
     "webpack"
   ],
@@ -95,6 +95,7 @@
     "compression-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "cordova": "^7.0.1",
+    "cross-env": "^5.0.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
     "expose-loader": "^0.7.3",

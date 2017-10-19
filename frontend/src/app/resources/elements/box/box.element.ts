@@ -107,6 +107,7 @@ export class BoxCustomElement {
 
       // determine coords and range of box
       // determine intersection with all other boxes -> call boxservice
+      // register to "listen to that box"
       // notifymovement to all listening boxes
     }
 

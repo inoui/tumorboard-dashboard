@@ -2,15 +2,9 @@
     <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
       <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse">-->
-      <span repeat.for="patient of patients">
-        <a class="navbar-brand" href="#">
-          <!--<i class="fa fa-user"></i>-->
-          <span>${ patient.name }</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-cross"></i>
-        </a>
-      </span>
+      <ButtonGroup justified>
+        <client-footer-link repeat.for="client of clients" client.bind="client"></client-footer-link>
+      </ButtonGroup>
     </div>
   </nav>
 </template>
