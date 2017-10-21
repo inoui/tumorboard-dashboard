@@ -23,11 +23,7 @@ export class BoxService {
     return res;
   }
 
-<<<<<<< HEAD
-  // todo update box when position or size changes
-=======
   public async getBoxesForClient(client: Client): Promise<Box[]> {
    return this.clientService.getClient(client.id).then(result => result.boxes);
   }
->>>>>>> a9208d031386751b4a9ebcda663d0bd1a41693fa
 }
