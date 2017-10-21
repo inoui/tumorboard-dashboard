@@ -1,5 +1,5 @@
 import { autoinject, bindable } from 'aurelia-framework';
-import { Box } from '../../../services/boxes.service';
+import { Box, BoxService } from '../../../services/boxes.service';
 import * as interact from 'interactjs';
 import { LogManager, Logger} from '../../../services/logger.service';
 
@@ -13,37 +13,46 @@ export class BoxCustomElement {
   private logger: Logger;
   private GRID_SIZE = 20;
 
-  constructor() {
+  constructor(
+    private boxService: BoxService
+  ) {
     this.logger = LogManager.getLogger('AppViewModel');
   }
 
   public attached(): void {
     interact(this.element).draggable({
-
+      /*snap: {
+        targets: [ interact.createSnapGrid({ x:500, y: 500 })
+        ],
+        range: Infinity,
+        relativePoints: [
+         //  { x: 0, y: 100000  },   // snap relative to the element's top-left,
+         //  { x: 0.5, y: 0.5 },   // to the center
+         // { x: 1  , y: 1   }    // and to the bottom-right
+        ],
+        //offset: { x: 20, y: 20 }
+        endOnly: true
+      },*/
       // enable inertial throwing
       inertia: true,
-
       // keep the element within the area of it's parent
       restrict: {
         restriction: '.page-host',
         endOnly: true,
         elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
       },
-
       // enable autoScroll
       autoScroll: false,
 
       // call this function on every dragmove event
       onmove: dragMoveListener,
-
       // call this function on every dragend event
       onend: (event) => {
         // TODO: move underlying boxes
       }
     });
 
-    this.element.onpointerdown = mouseDownListener;
-    this.element.onpointerup = mouseUpListener;
+    //this.element.onpointerdown = mouseDownListener;
     let dis = this;
 
     interact(this.element).resizable({
@@ -72,12 +81,19 @@ export class BoxCustomElement {
       target.setAttribute('data-y', y);
     });
 
+    let element = document.getElementById('grid-snap'),
+    x = 0, y = 0;
     function dragMoveListener(event): void {
       let target = event.target,
         // keep the dragged position in the data-x/data-y attributes
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy,
+        oldZIndex = target.style.zIndex === undefined ? 0 : target.style.zIndex;
 
+      dis.logger.info('old zindex of ' + target + ' : ' + target.style.zIndex);
+
+      target.style.zIndex = 10;
+      dis.logger.info('new zindex of ' + target + ' : ' + target.style.zIndex);
       // translate the element
       target.style.webkitTransform =
         target.style.transform =
@@ -86,17 +102,19 @@ export class BoxCustomElement {
       // update the posiion attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
+      //target.style.zIndex = oldZIndex;
+      //dis.logger.info('new old zindex of ' + target + ' : ' + target.style.zIndex);
+
+      // determine coords and range of box
+      // determine intersection with all other boxes -> call boxservice
+      // register to "listen to that box"
+      // notifymovement to all listening boxes
     }
 
-    function mouseDownListener(event): void {
-      dis.logger.info('before: ' + event.target.style.zIndex);
+    /*function mouseDownListener(event): void {
       event.target.style.zIndex = 10;
-      dis.logger.info('after: ' + event.target.style.zIndex);
-    }
+    }*/
 
-    function mouseUpListener(event): void {
-        event.target.style.zIndex = 0;
-      }
   }
 
 }

@@ -17,6 +17,7 @@ backend/.gradle
 backend/build
 backend/.idea
 backend/out
+backend/bin
 
 # Ignore Gradle GUI config
 gradle-app.setting
