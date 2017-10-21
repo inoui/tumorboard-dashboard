@@ -1,13 +1,13 @@
 import { autoinject, bindable } from 'aurelia-framework';
-import { Box, BoxService } from '../../../services/boxes.service';
+import { Box, TextBox, BoxService } from '../../../services/boxes.service';
 import * as interact from 'interactjs';
 import { LogManager, Logger} from '../../../services/logger.service';
 
 @autoinject
-export class BoxCustomElement {
+export class TextboxCustomElement {
 
   @bindable
-  public content: Box;
+  public content: TextBox;
   public element: Element;
   public style: String;
   private logger: Logger;
@@ -17,9 +17,15 @@ export class BoxCustomElement {
     private boxService: BoxService
   ) {
     this.logger = LogManager.getLogger('AppViewModel');
+    this.logger.info('creation!');
+  }
+
+  public bind(): void {
+    this.logger.info('bound.');
   }
 
   public attached(): void {
+    this.logger.info('attached!');
     interact(this.element).draggable({
       /*snap: {
         targets: [ interact.createSnapGrid({ x:500, y: 500 })

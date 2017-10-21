@@ -4,7 +4,16 @@ import { Client, ClientService } from './client.service';
 
 export interface Box {
   title: string;
-  description: string;
+}
+
+export class TextBox implements Box {
+  public title: string;
+  public content: string;
+}
+
+export class ImageBox implements Box {
+  public title: string;
+  public image: string;
 }
 
 @autoinject

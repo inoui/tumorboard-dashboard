@@ -6,7 +6,10 @@
     <button class="btn btn-default fa fa-print pull-right" click.delegate="onClickPrint()" alt="${ 'PRINT_BUTTON_VALUE' | t }"></button>
   </header>
   <section class="au-animate">
-      <box repeat.for="box of boxes" content.bind="box"></box>
+    <div repeat.for="box of boxes">
+      <textbox if.bind="box.type==='text'" content.bind="box"></textbox>
+      <imagebox if.bind="box.type==='image'" content.bind="box"></imagebox>
+    </div>
   </section>
   <section>
     <footer></footer>
