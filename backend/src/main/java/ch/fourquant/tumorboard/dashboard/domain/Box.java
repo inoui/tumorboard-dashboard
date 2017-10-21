@@ -1,14 +1,22 @@
 package ch.fourquant.tumorboard.dashboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "box")
-public class Box {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ImageBox.class, name = "image"),
+        @JsonSubTypes.Type(value = TextBox.class, name = "text")
+})
+public abstract class Box {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     @NotNull
@@ -16,20 +24,7 @@ public class Box {
     private String title;
 
     @NotNull
-    @Column(name = "description")
-    private String description;
-
-    @NotNull
     private Long clientId;
-
-    public Box() {
-        super();
-    }
-
-    public Box(Box clone) {
-        title = clone.getTitle();
-        description = clone.getDescription();
-    }
 
     public Long getClientId() {
         return clientId;
@@ -47,14 +42,6 @@ public class Box {
         return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public Long getId() {
         return id;
     }
@@ -68,7 +55,6 @@ public class Box {
         return "Box {" +
                 " id = " + id +
                 ", title = '" + title + '\'' +
-                ", description = '" + description + '\'' +
                 ", client = " + clientId +
                 " }";
     }

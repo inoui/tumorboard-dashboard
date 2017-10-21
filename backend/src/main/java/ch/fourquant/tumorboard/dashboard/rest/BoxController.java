@@ -31,7 +31,6 @@ public class BoxController extends DashboardRestController<Box> {
         return repository;
     }
 
-
     @Override
     @CrossOrigin
     @PostMapping
